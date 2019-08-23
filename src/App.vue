@@ -7,7 +7,8 @@
     <!-- add v-bind directive to send data from parent to child -->
     <!-- v-bind means if videos property is updated inside of perent, re-render, pass the new list to the child -->
     <!-- v-bind means :  -->
-    <VideoList :videos="videos" />
+    <!-- VideoList is emmiting videoSelect event -->
+    <VideoList :videos="videos" @videoSelect="onVideoSelect" />
   </div>
 </template>
 
@@ -36,6 +37,10 @@ export default {
   },
 
   methods: {
+    onVideoSelect(video) {
+      console.log(video);
+    },
+
     async onTermChange(searchTerm) {
       //value of 1st arg of this is 2nd org of the emited event function from child
       const response = await axios.get(

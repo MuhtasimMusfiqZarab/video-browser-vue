@@ -1,5 +1,6 @@
 <template>
-  <li class="list-group-item media">
+  <!-- adding click event handler -->
+  <li class="list-group-item media" @click="onVideoSelect">
     <img :src="thumbnailURL" alt="photo" class="mr-3" />
     <div class="media-body">{{video.snippet.title}}</div>
   </li>
@@ -15,6 +16,12 @@ export default {
     // format data before we use that inside of the template
     thumbnailURL() {
       return this.video.snippet.thumbnails.default.url;
+    }
+  },
+  methods: {
+    onVideoSelect() {
+      // triggering(emit) the event here //passing video with the event
+      this.$emit("videoSelect", this.video);
     }
   }
 };

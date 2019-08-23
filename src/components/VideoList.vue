@@ -2,7 +2,13 @@
   <ul class="list-group">
     <!-- need to provide the key property in the element of which we are making the list of (iteration) -->
     <!-- key is used whenever out list is updated (update our list in a performant fasion) -->
-    <VideoListItem v-for="singleVideo in videos" :video="singleVideo" :key="singleVideo.etag" />
+    <!-- listening videoSelect event from child(videoListItem) -->
+    <VideoListItem
+      v-for="singleVideo in videos"
+      :video="singleVideo"
+      :key="singleVideo.etag"
+      @videoSelect="onVideoSelect"
+    />
   </ul>
 </template>
 
@@ -19,6 +25,12 @@ export default {
   //    we can write--- props: ["videos"] or
   props: {
     videos: Array
+  },
+  methods: {
+    // getting the video from the emmited child event 2nd parameter
+    onVideoSelect(video) {
+      this.$emit("videoSelect", video);
+    }
   }
 };
 </script>
