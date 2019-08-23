@@ -21,4 +21,12 @@ export default {
 </script>
 
 <style scoped>
+input {
+  width: 60%;
+}
+
+div {
+  text-align: center;
+  margin: 20px;
+}
 </style>

@@ -1,6 +1,6 @@
 
 <template>
-  <div>
+  <div class="container">
     <!-- listen for events coming from child (SearchBar) -->
     <!-- if termChange is triggered run onTermChange -->
     <SearchBar @termChange="onTermChange" />
@@ -51,6 +51,7 @@ export default {
       );
       // saving response to video data
       this.videos = response.data.items;
+      console.log(response);
     }
   }
 };

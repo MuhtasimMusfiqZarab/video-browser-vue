@@ -1,8 +1,8 @@
 <template>
-  <ul>
+  <ul class="list-group">
     <!-- need to provide the key property in the element of which we are making the list of (iteration) -->
     <!-- key is used whenever out list is updated (update our list in a performant fasion) -->
-    <VideoListItem v-for="singleVideo in videos" :video="singleVideo" v-bind:key="video.etag" />
+    <VideoListItem v-for="singleVideo in videos" :video="singleVideo" :key="singleVideo.etag" />
   </ul>
 </template>
 
