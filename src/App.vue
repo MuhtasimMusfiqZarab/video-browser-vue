@@ -8,15 +8,30 @@
 </template>
 
 <script>
+import axios from "axios";
 import SearchBar from "./components/SearchBar";
+
+const API_KEY = "AIzaSyDk1jmFPY0NSOmkXPvTcBnDkNyDqjx1lTQ";
 
 export default {
   // this object contains properties which customize this vue component &  how it behaves
   name: "App",
   methods: {
-    onTermChange(searchTerm) {
+    async onTermChange(searchTerm) {
       //value of 1st arg of this is 2nd org of the emited event function from child
-      console.log(searchTerm);
+      const response = await axios.get(
+        "https://www.googleapis.com/youtube/v3/search",
+        {
+          params: {
+            key: API_KEY,
+            type: "video",
+            part: "snippet",
+            q: searchTerm
+          }
+        }
+      );
+      console.log(response);
+      // .then(response => console.log(response));
     }
   },
 
