@@ -4,11 +4,16 @@
     <!-- listen for events coming from child (SearchBar) -->
     <!-- if termChange is triggered run onTermChange -->
     <SearchBar @termChange="onTermChange" />
-    <!-- add v-bind directive to send data from parent to child -->
-    <!-- v-bind means if videos property is updated inside of perent, re-render, pass the new list to the child -->
-    <!-- v-bind means :  -->
-    <!-- VideoList is emmiting videoSelect event -->
-    <VideoList :videos="videos" @videoSelect="onVideoSelect" />
+    <div class="row">
+      <!-- video prop is sent -->
+      <VideoDetail :video="selectedVideo" />
+      <!-- add v-bind directive to send data from parent to child -->
+      <!-- v-bind means if videos property is updated inside of perent, re-render, pass the new list to the child -->
+      <!-- v-bind means :  -->
+      <!-- VideoList is emmiting videoSelect event -->
+      <!-- @videoSelect event has video data inside of it  which we can use -->
+      <VideoList :videos="videos" @videoSelect="onVideoSelect" />
+    </div>
   </div>
 </template>
 
@@ -16,6 +21,7 @@
 import axios from "axios";
 import SearchBar from "./components/SearchBar";
 import VideoList from "./components/VideoList";
+import VideoDetail from "./components/VideoDetail";
 
 const API_KEY = "AIzaSyDk1jmFPY0NSOmkXPvTcBnDkNyDqjx1lTQ";
 
@@ -25,20 +31,22 @@ export default {
   // here we are specifyig the components we are using here
   components: {
     SearchBar,
-    VideoList
+    VideoList,
+    VideoDetail
   },
   // in vue component data property is a function which returns object ( every instance get a copy of the data, not sharing a single one)
 
   data() {
     // function returns data object
     return {
-      videos: []
+      videos: [],
+      selectedVideo: null /// there is no selected video at the start
     };
   },
 
   methods: {
     onVideoSelect(video) {
-      console.log(video);
+      this.selectedVideo = video;
     },
 
     async onTermChange(searchTerm) {

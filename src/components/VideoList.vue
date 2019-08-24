@@ -1,5 +1,5 @@
 <template>
-  <ul class="list-group">
+  <ul class="col-md-4">
     <!-- need to provide the key property in the element of which we are making the list of (iteration) -->
     <!-- key is used whenever out list is updated (update our list in a performant fasion) -->
     <!-- listening videoSelect event from child(videoListItem) -->
